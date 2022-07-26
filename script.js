@@ -15,40 +15,52 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-  let playerChoice;
+  let playerInput;
   let invalidInput = true;
 
   do {
     // Make sure the user enters a valid input
     playerInput = prompt("Rock, Paper or Scissors? Choose:");      
-      
     if (!playerInput) {
-      alert("You didn't make any choice. Game over.")
-
       return false;
     }
 
     playerSelection = playerInput[0].toUpperCase() + playerInput.substring(1).toLowerCase();
 
     if (!(options.includes(playerSelection))) {
-      alert("That's not a valid input -.-");
+      alert(`${playerSelection} is not a valid input -.-`);
     } else {
       invalidInput = false;
     }
 
   } while (invalidInput)
   
-  return playerSelection;
-  
+  return playerSelection; 
 }
 
 function playRound(playerSelection, computerSelection) {
+  
+  if ((playerSelection === "Paper" && computerSelection === "Rock") || 
+      (playerSelection === "Rock" && computerSelection === "Scissors") || 
+      (playerSelection === "Scissors" && computerSelection === "Paper")) {
+    console.log(`You win! ${playerSelection} beats ${computerSelection}.`)
+  
+  } else if ((computerSelection === "Paper" && playerSelection === "Rock") || 
+  (computerSelection === "Rock" && playerSelection === "Scissors") || 
+  (computerSelection === "Scissors" && playerSelection === "Paper")) {
+    console.log(`You lose! ${computerSelection} beats ${playerSelection}.`)
 
-  if (!playerSelection) {
-    return false;
+  } else {
+  console.log(`It's a tie! Both selected ${computerSelection}.`); 
   }
-
-  console.log("The player selected " + playerSelection + " and the computer selected " + computerSelection + ".");
 }
 
-playRound(getPlayerChoice(), getComputerChoice());
+let playerChoice = getPlayerChoice();
+let computerChoice = getComputerChoice();
+
+if (!playerChoice) {
+  alert("You didn't make any choice. Game over.")
+} else {
+  playRound(playerChoice, computerChoice);
+}
+
