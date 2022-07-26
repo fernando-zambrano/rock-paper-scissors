@@ -41,17 +41,17 @@ function getPlayerChoice() {
 function playRound(playerSelection, computerSelection) {
   
   if ((playerSelection === "Paper" && computerSelection === "Rock") || 
-      (playerSelection === "Rock" && computerSelection === "Scissors") || 
-      (playerSelection === "Scissors" && computerSelection === "Paper")) {
-    console.log(`You win! ${playerSelection} beats ${computerSelection}.`)
+  (playerSelection === "Rock" && computerSelection === "Scissors") || 
+  (playerSelection === "Scissors" && computerSelection === "Paper")) {
+    return (`You win! ${playerSelection} beats ${computerSelection}.`)
   
-  } else if ((computerSelection === "Paper" && playerSelection === "Rock") || 
+  } else if ((computerSelection === "Paper" && playerSelection === "Rock") ||
   (computerSelection === "Rock" && playerSelection === "Scissors") || 
   (computerSelection === "Scissors" && playerSelection === "Paper")) {
-    console.log(`You lose! ${computerSelection} beats ${playerSelection}.`)
+    return (`You lose! ${computerSelection} beats ${playerSelection}.`)
 
   } else {
-  console.log(`It's a tie! Both selected ${computerSelection}.`); 
+    return (`It's a tie! Both selected ${computerSelection}.`); 
   }
 }
 
@@ -61,6 +61,6 @@ let computerChoice = getComputerChoice();
 if (!playerChoice) {
   alert("You didn't make any choice. Game over.")
 } else {
-  playRound(playerChoice, computerChoice);
+  console.log(playRound(playerChoice, computerChoice));
 }
 
